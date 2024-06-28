@@ -48,8 +48,12 @@ const Report = () => {
   useEffect(() => {
     const savedCheckedOrders = {};
     orders.forEach((order) => {
-      const status = localStorage.getItem(`order-${order.id}`) === 'true';
-      savedCheckedOrders[order.id] = status;
+      const statusPayment = localStorage.getItem(`order-${order.id}-payment`) === 'true';
+      const statusCreated = localStorage.getItem(`order-${order.id}-created`) === 'true';
+      const statusDelivered = localStorage.getItem(`order-${order.id}-delivered`) === 'true';
+      savedCheckedOrders[`${order.id}-payment`] = statusPayment;
+      savedCheckedOrders[`${order.id}-created`] = statusCreated;
+      savedCheckedOrders[`${order.id}-delivered`] = statusDelivered;
     });
     setCheckedOrders(savedCheckedOrders);
   }, [orders]);
@@ -80,11 +84,11 @@ const Report = () => {
 
   const filteredTotalAmount = calculateTotalAmount(filteredOrders);
 
-  const handleCheckboxChange = (id) => {
+  const handleCheckboxChange = (id, type) => {
     const updatedOrders = orders.map((order) => {
       if (order.id === id) {
-        order.status = !order.status;
-        localStorage.setItem(`order-${id}`, order.status);
+        order[type] = !order[type];
+        localStorage.setItem(`order-${id}-${type}`, order[type]);
       }
       return order;
     });
@@ -93,7 +97,7 @@ const Report = () => {
 
     setCheckedOrders((prevState) => ({
       ...prevState,
-      [id]: !prevState[id],
+      [`${id}-${type}`]: !prevState[`${id}-${type}`],
     }));
   };
 
@@ -106,7 +110,7 @@ const Report = () => {
       <BackgroundAbout>
         <div className="max-w-screen-lg p-4 mx-auto">
           <h3 className="text-xl text-[#321313] text-left font-bold">
-            Table Report
+            Report Table
           </h3>
           <div className="flex flex-col justify-between mt-4 sm:flex-row items-left">
             <div className="flex flex-col mb-4 sm:flex-row items-left sm:mb-0">
@@ -142,8 +146,10 @@ const Report = () => {
                   <th className="px-4 py-2 border-b">Time</th>
                   <th className="px-4 py-2 border-b">Name</th>
                   <th className="px-4 py-2 border-b">Total Price</th>
-                  <th className="px-4 py-2 border-b">Detail</th>
-                  <th className="px-4 py-2 border-b">Status</th>
+                  <th className="px-4 py-2 border-b">Details</th>
+                  <th className="px-4 py-2 border-b">Payment</th>
+                  <th className="px-4 py-2 border-b">Created</th>
+                  <th className="px-4 py-2 border-b">Delivered </th>
                 </tr>
               </thead>
               <tbody>
@@ -189,8 +195,28 @@ const Report = () => {
                         <input
                           type="checkbox"
                           className="custom-checkbox"
-                          checked={checkedOrders[order.id] || false}
-                          onChange={() => handleCheckboxChange(order.id)}
+                          checked={checkedOrders[`${order.id}-payment`] || false}
+                          onChange={() => handleCheckboxChange(order.id, 'payment')}
+                        />
+                      </label>
+                    </td>
+                    <td className="px-4 py-2 text-center border-b">
+                      <label className="inline-flex items-center">
+                        <input
+                          type="checkbox"
+                          className="custom-checkbox"
+                          checked={checkedOrders[`${order.id}-created`] || false}
+                          onChange={() => handleCheckboxChange(order.id, 'created')}
+                        />
+                      </label>
+                    </td>
+                    <td className="px-4 py-2 text-center border-b">
+                      <label className="inline-flex items-center">
+                        <input
+                          type="checkbox"
+                          className="custom-checkbox"
+                          checked={checkedOrders[`${order.id}-delivered`] || false}
+                          onChange={() => handleCheckboxChange(order.id, 'delivered')}
                         />
                       </label>
                     </td>
@@ -210,10 +236,10 @@ const Report = () => {
               })}
             </div>
             <button
+              className="bg-[#F4991A] text-[#321313] px-4 py-2 rounded-md font-bold"
               onClick={handlePrint}
-              className="w-24 text-[#321313] font-bold bg-[#F4991A] rounded-md"
             >
-              Print
+              Print 
             </button>
           </div>
         </div>

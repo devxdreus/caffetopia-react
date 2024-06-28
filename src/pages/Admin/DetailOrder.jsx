@@ -133,11 +133,11 @@ const DetailOrder = () => {
                 Print
               </button>
               <Link
-                to="/orderprint"
-                className="w-24 text-[#321313] font-bold bg-[#F4991A] rounded-md p-2 md:p-2 text-center flex items-center justify-center mt-4 ml-auto"
-              >
-                Bayar
-              </Link>
+                  to="/report"
+                  className="w-24 text-[#321313] font-bold bg-[#F4991A] rounded-md p-2 md:p-2 text-center flex items-center justify-center mt-4 ml-auto"
+                >
+                  Report
+                </Link>
             </div>
           </div>
         </div>

@@ -14,6 +14,9 @@ export default function CategoryList() {
   return (
     <div className="basis-1/3 flex flex-col sm:border">
     <div className="basis-1/4 flex flex-col p-4 space-y-4">
+    <h1 className="text-lg sm:text-2xl text-center text-[#321313] font-bold my-1">
+          Manage Category & Add Product
+        </h1>
       <div className="flex flex-col space-y-2">
         <button
           onClick={() => navigate("/addcategory")}
