@@ -1,0 +1,106 @@
+/* CSS untuk container input pencarian dan tombol */
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+/* CSS untuk input pencarian */
+.search-input {
+    flex: 1; /* Memiliki fleksibilitas untuk mengambil sisa ruang yang tersedia */
+    max-width: 200px; /* Batasan lebar maksimum untuk menghindari memanjang penuh */
+}
+
+/* CSS untuk tombol pencarian */
+.search-button {
+    margin-left: 8px; /* Jarak antara input dan tombol */
+}
+
+
+.table-container {
+    overflow-x: auto;
+}
+
+  
+.table-report {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.table-report th,
+.table-report td {
+    white-space: nowrap;
+    overflow: hidden;
+    border-bottom: none; /* Menghilangkan garis horizontal pada sel */
+}
+
+
+td.text-center .link-detail {
+    display: inline-block !important;
+    text-align: center !important;
+    padding: 0px 9px !important; /* Atur padding sesuai kebutuhan */
+}
+
+td.text-center .link-detail .fa-icon {
+    margin-left: -4px !important; /* Atur margin sesuai kebutuhan */
+    margin-bottom: -1px !important; /* Atur margin sesuai kebutuhan */
+}
+
+
+/* CSS untuk custom checkbox */
+.custom-checkbox {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+    background-color: white;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+}
+
+.custom-checkbox:checked {
+    border-color: #F4991A; /* Warna oranye */
+    background-color: #F4991A; /* Warna oranye */
+}
+
+.custom-checkbox:checked:after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 7px;
+    width: 4px;
+    height: 8px;
+    border: solid #321313; /* Ubah warna border simbol centang menjadi coklat */
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+
+/* CSS untuk style link saat dihover */
+.link-hover:hover {
+    transform: scale(1.05);
+    background-color: #f3ad4b;
+    transition: 0.4s all;
+}
+
+/* Report.css */
+
+/* Media query untuk menyembunyikan elemen saat mencetak */
+@media print {
+    .navbar {
+      display: none !important;
+    }
+  
+    /* Anda juga dapat menyembunyikan elemen lain jika diperlukan */
+    .other-non-printable-element {
+      display: none !important;
+    }
+  }
+  
+  
+  /* Tambahan CSS lainnya untuk Report component */
+  
+  

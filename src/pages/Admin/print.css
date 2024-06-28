@@ -1,0 +1,28 @@
+/* print.css */
+@media print {
+    /* Hide elements that shouldn't be printed */
+    .navbar, .search-button {
+      display: none !important;
+    }
+  
+    /* Adjust the layout for printing */
+    .table-container {
+      margin-top: 0;
+    }
+  
+    .table-report {
+      width: 100%;
+      border-collapse: collapse;
+    }
+  
+    .table-report th, .table-report td {
+      border: 1px solid #000;
+      padding: 8px;
+    }
+  
+    /* Any other print-specific styles */
+    .no-print {
+      display: none !important;
+    }
+  }
+  

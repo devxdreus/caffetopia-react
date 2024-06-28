@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "poppins";
+}
+
+.landing-content {
+  border-radius: 50px;
+  box-shadow: 0px 5px 5px 0px #00000040;
+}
+
+.card-coffee {
+  border-radius: 25px;
+}
+
+.card-stories-customer {
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.card-hamburger {
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.card-coffee {
+  color: white;
+  transition: 0.5s all;
+}
+
+.card-coffee:hover {
+  background-color: #f5c2b0;
+  color: #7a422e;
+  transition: 0.4s all;
+}
+
+/* .card-coffee .card-icon {
+    transition: .5s all;
+}
+
+.card-coffee .card-icon:hover {
+    transform: rotate(20deg);
+    transition: .4s all;
+} */
+
+.card-coffee Link:hover {
+  transform: scale(1.05);
+  background-color: #f3ad4b;
+  transition: 0.4s all;
+}
