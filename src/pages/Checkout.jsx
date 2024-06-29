@@ -135,7 +135,8 @@ const Checkout = () => {
                 <h3 className="text-3xl text-center font-bold mb-4 border-b border-gray-200">
                   Products
                 </h3>
-                <table className="w-full" id="productTable">
+                <div className="mt-4 overflow-x-auto table-container">
+                <table className="min-w-full" id="productTable">
                   <thead>
                     <tr>
                       <th className="text-left p-4">Name</th>
@@ -185,6 +186,7 @@ const Checkout = () => {
                     )}
                   </tbody>
                 </table>
+                </div>
                 <div className="flex items-center space-x-2 mt-8">
                   <label
                     htmlFor="tableNumber"
@@ -193,19 +195,19 @@ const Checkout = () => {
                     Table No :
                   </label>
                   <select  
-  id="tableNumber"
-  className="bg-white border border-[#321313] text-[#321313] text-xs rounded-md p-1 w-52"
-  value={tableNumber}
-  onChange={(e) => setTableNumber(e.target.value)}
-  required
->
-  <option value="">select a table number</option>
-  {[1, 2, 3].filter((number) => !bookedTableNumbers.includes(number)).map((number) => (
-    <option key={number} value={number}>
-      Table {number}
-    </option>
-  ))}
-</select>
+                    id="tableNumber"
+                    className="bg-white border border-[#321313] text-[#321313] text-xs rounded-md p-1 w-52"
+                    value={tableNumber}
+                    onChange={(e) => setTableNumber(e.target.value)}
+                    required
+                  >
+                    <option value="">select a table number</option>
+                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ].filter((number) => !bookedTableNumbers.includes(number)).map((number) => (
+                      <option key={number} value={number}>
+                        Table {number}
+                      </option>
+                    ))}
+                  </select>
 
                 </div>
                 <div className="flex items-center space-x-2 mt-4">
@@ -228,14 +230,15 @@ const Checkout = () => {
                   </select>
                 </div>
                 <div className="flex flex-col space-y-2 mt-4">
-                  <input
-                    type="text"
-                    id="notes"
-                    onChange={(e) => setNote(e.target.value)}
-                    className="bg-white border border-[#321313] text-[#321313] text-xs rounded-md p-2 w-72"
-                    placeholder="Notes..."
-                  />
-                </div>
+                <input
+                  type="text"
+                  id="notes"
+                  onChange={(e) => setNote(e.target.value)}
+                  className="bg-white border border-[#321313] text-[#321313] text-xs rounded-md p-2 w-64 sm:w-72"
+                  placeholder="Notes..."
+                />
+              </div>
+
                 <div className="flex justify-between">
                   <div className="flex justify-start w-full mb-4 sm:mb-4 mt-8">
                     {!isConfirmed && (
