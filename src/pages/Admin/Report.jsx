@@ -92,13 +92,17 @@ const Report = () => {
       }
       return order;
     });
-
     setOrders(updatedOrders);
+  };
 
-    setCheckedOrders((prevState) => ({
-      ...prevState,
-      [`${id}-${type}`]: !prevState[`${id}-${type}`],
-    }));
+  const handleTableChange = (id, value) => {
+    const updatedOrders = orders.map((order) => {
+      if (order.id === id) {
+        return { ...order, table: value };
+      }
+      return order;
+    });
+    setOrders(updatedOrders);
   };
 
   const handlePrint = () => {
@@ -150,6 +154,8 @@ const Report = () => {
                   <th className="px-4 py-2 border-b">Payment</th>
                   <th className="px-4 py-2 border-b">Created</th>
                   <th className="px-4 py-2 border-b">Delivered </th>
+                  <th className="px-4 py-2 border-b">Table</th>
+
                 </tr>
               </thead>
               <tbody>
@@ -220,10 +226,21 @@ const Report = () => {
                         />
                       </label>
                     </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                    <td className="px-4 py-2 text-center border-b">
+                <select
+                  value={order.table}
+                  onChange={(e) => handleTableChange(order.id, e.target.value)}
+                  className="select-table"
+                >
+                  <option value="reserved">Reserved</option>
+                  <option value="not_reserved">Not Reserved</option>
+                  {/* Tambahkan opsi tambahan sesuai kebutuhan */}
+                </select>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
           </div>
           <div className="flex flex-col justify-between mt-4 sm:flex-row">
             <div className="bg-[#F4991A] border-1 border-[#321313] rounded-md p-2 mb-4 sm:mb-0 max-w-xs">
