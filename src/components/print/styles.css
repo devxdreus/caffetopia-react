@@ -2,6 +2,24 @@
     display: none;
   }
 
+  .table-container {
+    overflow-x: auto;
+}
+
+  
+.table-report {
+    table-layout: fixed;
+    width: 100%;
+    border-radius: 10px; /* Rounded border */
+}
+
+.table-report th,
+.table-report td {
+    white-space: nowrap;
+    overflow: hidden;
+    border-bottom: none; /* Menghilangkan garis horizontal pada sel */
+}
+
   @media print {
     .no-print {
       display: none;

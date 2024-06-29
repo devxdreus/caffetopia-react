@@ -21,29 +21,32 @@ const Report = () => {
       try {
         const response = await axios.get('/orders');
         const data = response.data.payload;
-
+  
         const sortedData = data.sort(
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
         );
-
+  
         const formattedData = sortedData.map((entry) => {
           const date = getFormattedDate(entry.createdAt);
           const time = getFormattedTime(entry.createdAt);
+          const table = localStorage.getItem(`order-${entry.id}-table`) || entry.table; // Muat nilai tabel dari localStorage
           return {
             ...entry,
             date,
             time,
+            table,
           };
         });
-
+  
         setOrders(formattedData);
       } catch (error) {
         console.error(error);
       }
     };
-
+  
     fetchOrders();
   }, []);
+  
 
   useEffect(() => {
     const savedCheckedOrders = {};
@@ -98,12 +101,14 @@ const Report = () => {
   const handleTableChange = (id, value) => {
     const updatedOrders = orders.map((order) => {
       if (order.id === id) {
+        localStorage.setItem(`order-${id}-table`, value); // Simpan nilai tabel ke localStorage
         return { ...order, table: value };
       }
       return order;
     });
     setOrders(updatedOrders);
   };
+  
 
   const handlePrint = () => {
     navigate('/print-report', { state: { orders: filteredOrders, totalAmount: filteredTotalAmount } });
@@ -141,7 +146,7 @@ const Report = () => {
             </div>
           </div>
           <div className="mt-4 overflow-x-auto table-container">
-            <table className="min-w-full bg-white border-1 border-[#321313] rounded-md table-report">
+            <table className="max-w-full bg-white border-1 border-[#321313] rounded-md table-report">
               <thead>
                 <tr>
                   <th className="px-4 py-2 border-b">No</th>
@@ -226,18 +231,22 @@ const Report = () => {
                         />
                       </label>
                     </td>
-                    <td className="px-4 py-2 text-center border-b">
-                <select
-                  value={order.table}
-                  onChange={(e) => handleTableChange(order.id, e.target.value)}
-                  className="select-table"
-                >
-                  <option value="reserved">Reserved</option>
-                  <option value="not_reserved">Not Reserved</option>
-                  {/* Tambahkan opsi tambahan sesuai kebutuhan */}
-                </select>
-              </td>
-            </tr>
+                    <td className="px-4 py-2 text-12 text-center border-b">
+                    <select
+                      value={order.table}
+                      onChange={(e) => handleTableChange(order.id, e.target.value)}
+                      className={`select-table text-xs rounded-md ${
+                        order.table === 'Available'
+                          ? 'text-white bg-red-500'
+                          : 'text-green-500 bg-green-100'
+                      }`}
+                    >
+                      <option value="Booked" className="font-bold">Booked</option>
+                      <option value="Available" className="font-bold">Available</option>
+                      {/* Tambahkan opsi tambahan sesuai kebutuhan */}
+                    </select>
+                  </td>
+                  </tr>
           ))}
         </tbody>
       </table>
@@ -253,7 +262,7 @@ const Report = () => {
               })}
             </div>
             <button
-              className="bg-[#F4991A] text-[#321313] px-4 py-2 rounded-md font-bold"
+               className="w-24 text-[#321313] font-bold bg-[#F4991A] rounded-md p-2 md:p-2 text-center flex items-center justify-center"
               onClick={handlePrint}
             >
               Print 

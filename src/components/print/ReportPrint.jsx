@@ -34,9 +34,9 @@ const ReportPrint = () => {
       <BackgroundAbout>
         <div className="max-w-screen-lg p-4 mx-auto">
           <h3 className="text-xl text-[#321313] text-left font-bold">
-            Print Report
+            Daily Report
           </h3>
-          <div className="mt-4 overflow-x-auto table-container">
+          <div className="mt-4 overflow-x-auto">
             <table className="min-w-full bg-white border rounded-md table-report">
               <thead>
                 <tr>
@@ -101,6 +101,7 @@ const ReportPrint = () => {
       </BackgroundAbout>
     </div>
   );
+  
 };
 
 export default ReportPrint;
