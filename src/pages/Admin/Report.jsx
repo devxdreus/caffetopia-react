@@ -98,16 +98,18 @@ const Report = () => {
     setOrders(updatedOrders);
   };
 
-  const handleTableChange = (id, value) => {
-    const updatedOrders = orders.map((order) => {
-      if (order.id === id) {
-        localStorage.setItem(`order-${id}-table`, value); // Simpan nilai tabel ke localStorage
-        return { ...order, table: value };
-      }
-      return order;
-    });
-    setOrders(updatedOrders);
-  };
+// Saat melakukan perubahan status meja pada laporan
+const handleTableChange = (id, value) => {
+  const updatedOrders = orders.map((order) => {
+    if (order.id === id) {
+      localStorage.setItem(`order-${id}-table`, value); // Simpan nilai tabel ke localStorage
+      localStorage.setItem(`table-${order.table}`, value); // Simpan status meja ke localStorage
+      return { ...order, table: value };
+    }
+    return order;
+  });
+  setOrders(updatedOrders);
+};
   
 
   const handlePrint = () => {

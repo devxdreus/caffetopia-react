@@ -54,23 +54,27 @@ const Checkout = () => {
     });
   };
 
-  const handleConfirm = () => {
-    if (tableNumber !== "" && diningOption !== "") {
-      const totalPrice = cart.reduce((total, product) => {
-        return total + parseInt(product.price) * parseInt(product.quantity);
-      }, 0);
+ // Saat proses checkout, simpan informasi meja ke localStorage
+const handleConfirm = () => {
+  if (tableNumber !== "" && diningOption !== "") {
+    const totalPrice = cart.reduce((total, product) => {
+      return total + parseInt(product.price) * parseInt(product.quantity);
+    }, 0);
 
-      setTotalPrice(totalPrice);
-      setIsConfirmed(true);
-    } else {
-      Swal.fire({
-        title: "Error!",
-        text: "Please enter table number and dining option.",
-        icon: "error",
-        confirmButtonText: "OK",
-      });
-    }
-  };
+    setTotalPrice(totalPrice);
+    setIsConfirmed(true);
+
+    // Simpan informasi meja ke localStorage
+    localStorage.setItem(`order-${cart.id}-table`, tableNumber);
+  } else {
+    Swal.fire({
+      title: "Error!",
+      text: "Please enter table number and dining option.",
+      icon: "error",
+      confirmButtonText: "OK",
+    });
+  }
+};
 
   const handleCheckout = async () => {
     const order = {
@@ -192,9 +196,10 @@ const Checkout = () => {
                     htmlFor="tableNumber"
                     className="text-sm text-[#321313]"
                   >
-                    Table No :
+                    Table No:
                   </label>
-                  <select  
+                  
+                  <select
                     id="tableNumber"
                     className="bg-white border border-[#321313] text-[#321313] text-xs rounded-md p-1 w-52"
                     value={tableNumber}
@@ -202,7 +207,10 @@ const Checkout = () => {
                     required
                   >
                     <option value="">select a table number</option>
-                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ].filter((number) => !bookedTableNumbers.includes(number)).map((number) => (
+                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ].filter((number) => {
+                      const tableStatus = localStorage.getItem(`table-${number}`);
+                      return tableStatus !== 'booked';
+                    }).map((number) => (
                       <option key={number} value={number}>
                         Table {number}
                       </option>
