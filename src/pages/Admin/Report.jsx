@@ -30,6 +30,8 @@ const Report = () => {
           const date = getFormattedDate(entry.createdAt);
           const time = getFormattedTime(entry.createdAt);
           const table = localStorage.getItem(`order-${entry.id}-table`) || entry.table; // Muat nilai tabel dari localStorage
+          const payment = localStorage.getItem(`order-${entry.id}-payment`) || entry.payment; // Muat nilai pembayaran dari localStorage
+
           return {
             ...entry,
             date,
@@ -51,10 +53,9 @@ const Report = () => {
   useEffect(() => {
     const savedCheckedOrders = {};
     orders.forEach((order) => {
-      const statusPayment = localStorage.getItem(`order-${order.id}-payment`) === 'true';
+     
       const statusCreated = localStorage.getItem(`order-${order.id}-created`) === 'true';
       const statusDelivered = localStorage.getItem(`order-${order.id}-delivered`) === 'true';
-      savedCheckedOrders[`${order.id}-payment`] = statusPayment;
       savedCheckedOrders[`${order.id}-created`] = statusCreated;
       savedCheckedOrders[`${order.id}-delivered`] = statusDelivered;
     });
@@ -87,6 +88,8 @@ const Report = () => {
 
   const filteredTotalAmount = calculateTotalAmount(filteredOrders);
 
+  console.log('Checked Orders:', checkedOrders);
+  
   const handleCheckboxChange = (id, type) => {
     const updatedOrders = orders.map((order) => {
       if (order.id === id) {
@@ -98,19 +101,24 @@ const Report = () => {
     setOrders(updatedOrders);
   };
 
-// Saat melakukan perubahan status meja pada laporan
-const handleTableChange = (id, value) => {
-  const updatedOrders = orders.map((order) => {
-    if (order.id === id) {
-      localStorage.setItem(`order-${id}-table`, value); // Simpan nilai tabel ke localStorage
-      localStorage.setItem(`table-${order.table}`, value); // Simpan status meja ke localStorage
-      return { ...order, table: value };
+  const handleTableChange = (id, value) => {
+    const isTableAvailable = value === 'Available'; // Menentukan apakah meja akan diubah menjadi tersedia
+    const isTableAlreadyBooked = orders.some(order => order.table === value && order.id !== id); // Memeriksa apakah meja sudah dipesan oleh pesanan lain
+
+    if (isTableAvailable || !isTableAlreadyBooked) {
+      const updatedOrders = orders.map((order) => {
+        if (order.id === id) {
+          localStorage.setItem(`order-${id}-table`, value); // Simpan nilai tabel ke localStorage
+          localStorage.setItem(`table-${order.table}`, value); // Simpan status meja ke localStorage
+          return { ...order, table: value };
+        }
+        return order;
+      });
+      setOrders(updatedOrders);
+    } else {
+      alert(`Table ${value} is already booked! Please select another table.`);
     }
-    return order;
-  });
-  setOrders(updatedOrders);
-};
-  
+  };
 
   const handlePrint = () => {
     navigate('/print-report', { state: { orders: filteredOrders, totalAmount: filteredTotalAmount } });
@@ -158,8 +166,7 @@ const handleTableChange = (id, value) => {
                   <th className="px-4 py-2 border-b">Name</th>
                   <th className="px-4 py-2 border-b">Total Price</th>
                   <th className="px-4 py-2 border-b">Details</th>
-                  <th className="px-4 py-2 border-b">Payment</th>
-                  <th className="px-4 py-2 border-b">Created</th>
+                  <th className="px-4 py-2 border-b">Cooked</th>
                   <th className="px-4 py-2 border-b">Delivered </th>
                   <th className="px-4 py-2 border-b">Table</th>
 
@@ -203,16 +210,7 @@ const handleTableChange = (id, value) => {
                         />
                       </Link>
                     </td>
-                    <td className="px-4 py-2 text-center border-b">
-                      <label className="inline-flex items-center">
-                        <input
-                          type="checkbox"
-                          className="custom-checkbox"
-                          checked={checkedOrders[`${order.id}-payment`] || false}
-                          onChange={() => handleCheckboxChange(order.id, 'payment')}
-                        />
-                      </label>
-                    </td>
+                   
                     <td className="px-4 py-2 text-center border-b">
                       <label className="inline-flex items-center">
                         <input

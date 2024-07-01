@@ -120,10 +120,7 @@ const Orders = () => {
                     )}`}</td>
                   </tr>
                 </tfoot>
-              </table>
-
-              <div className="border-b border-gray-200 mb-4"></div>
-             
+              </table>    
               <div className="flex justify-center">
                 <button
                   onClick={handlePrint}
@@ -135,7 +132,7 @@ const Orders = () => {
                   to="/report"
                   className="w-24 text-[#321313] font-bold bg-[#F4991A] rounded-md p-2 md:p-2 text-center flex items-center justify-center mt-4 ml-auto"
                 >
-                  Report
+                  Cancel
                 </Link>
               </div>
             </div>

@@ -35,7 +35,7 @@ const ApatizerMenu = () => {
     if (!auth?.accessToken) {
       // Menampilkan alert jika user belum login
       Swal.fire({
-        title: "Silahkan sign in untuk memesan pesanan!",
+        title: "Please sign in to place your order!",
         icon: "info",
         confirmButtonText: "Ok",
       });
@@ -44,7 +44,7 @@ const ApatizerMenu = () => {
       setCart([...cart, product]);
       // Menampilkan alert sukses
       Swal.fire({
-        title: "Product telah ditambahkan",
+        title: "Product has been added to the cart. ",
         icon: "success",
         confirmButtonText: "Ok",
       });

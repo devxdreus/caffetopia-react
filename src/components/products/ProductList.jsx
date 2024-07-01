@@ -16,14 +16,14 @@ export default function ProductList({ category, isAdmin }) {
   const handleOrderClick = (product) => {
     if (!localStorage.getItem("username")) {
       Swal.fire({
-        title: "Silahkan sign in untuk memesan pesanan!",
+        title: "Please sign in to place your order!",
         icon: "info",
         confirmButtonText: "Ok",
       });
     } else {
       addProductToCart(product);
       Swal.fire({
-        title: "Product telah ditambahkan",
+        title: "Product has been added to the cart.",
         icon: "success",
         confirmButtonText: "Ok",
       });

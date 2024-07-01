@@ -104,3 +104,16 @@ td.text-center .link-detail .fa-icon {
   /* Tambahan CSS lainnya untuk Report component */
   
   
+  .bg-cash {
+    background-color: rgb(250, 147, 198); /* Ubah sesuai kebutuhan */
+  }
+  
+  .bg-card {
+    background-color: rgb(151, 188, 238); /* Ubah sesuai kebutuhan */
+  }
+  
+  .bg-qris {
+    background-color: rgb(169, 252, 206); /* Ubah sesuai kebutuhan */
+  }
+  
+  

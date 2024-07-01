@@ -34,7 +34,7 @@ const FoodsMenu = () => {
     if (!token && !username) {
       // Menampilkan alert jika user belum login
       Swal.fire({
-        title: "Silahkan sign in untuk memesan pesanan!",
+        title: "Please sign in to place your order!",
         icon: "info",
         confirmButtonText: "Ok",
       });
@@ -43,7 +43,7 @@ const FoodsMenu = () => {
       setCart([...cart, product]);
       // Menampilkan alert sukses
       Swal.fire({
-        title: "Product telah ditambahkan",
+        title: "Product has been added to the cart.",
         icon: "success",
         confirmButtonText: "Ok",
       });
