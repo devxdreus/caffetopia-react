@@ -120,6 +120,8 @@ const Report = () => {
     }
   };
 
+
+
   const handlePrint = () => {
     navigate('/print-report', { state: { orders: filteredOrders, totalAmount: filteredTotalAmount } });
   };
@@ -169,6 +171,7 @@ const Report = () => {
                   <th className="px-4 py-2 border-b">Cooked</th>
                   <th className="px-4 py-2 border-b">Delivered </th>
                   <th className="px-4 py-2 border-b">Table</th>
+                  <th className="px-4 py-2 border-b">Status</th>
 
                 </tr>
               </thead>
@@ -230,6 +233,9 @@ const Report = () => {
                           onChange={() => handleCheckboxChange(order.id, 'delivered')}
                         />
                       </label>
+                    </td>
+                    <td className="px-4 py-2 text-center border-b">
+                      {order.table_number}
                     </td>
                     <td className="px-4 py-2 text-12 text-center border-b">
                     <select
