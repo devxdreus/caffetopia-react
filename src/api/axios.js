@@ -1,15 +1,18 @@
-import axios from "axios";
+import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL =
+    process.env.NODE_ENV !== 'production'
+        ? 'http://localhost:3000'
+        : 'http://8.215.11.16/api';
 
 export default axios.create({
-  baseURL: BASE_URL,
+    baseURL: BASE_URL,
 });
 
 export const axiosPrivate = axios.create({
-  baseURL: BASE_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
-  withCredentials: true,
+    baseURL: BASE_URL,
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    withCredentials: true,
 });
