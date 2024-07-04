@@ -203,7 +203,6 @@ const Checkout = () => {
 
         setAvailableNumber(tableSelet);
     };
-    TableNumberSelect();
 
     //select meja yang di pesan
     const [bookedTableNumbers, setBookedTableNumbers] = useState([]);
