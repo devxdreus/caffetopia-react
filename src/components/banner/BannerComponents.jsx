@@ -1,6 +1,6 @@
 import heart from "../../assets/heart.png";
 import maps from "../../assets/maps.png";
-import banner from "../../assets/banner.png";
+import banner from "../../assets/bg2.jpeg";
 import person from "../../assets/person.png";
 
 const BannerComponents = () => {

@@ -4,7 +4,7 @@ import CustomerComponents from "../components/customer/CustomerComponents";
 import FooterComponents from "../components/footer/FooterComponents";
 import BestCoffeeForYouComponents from "../components/services/BestCoffeeForYouComponents";
 // Asset
-import bestCoffee from "../assets/best-coffee-icon.png";
+import bestCoffee from "../assets/home1.png";
 
 const Home = () => {
   return (
