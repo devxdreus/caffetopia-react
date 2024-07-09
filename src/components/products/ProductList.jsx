@@ -5,12 +5,14 @@ import { faPencilAlt, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
 import { UseDeleteProduct } from "./handleDelete";
 import { useContext } from "react";
-import { ProductContext } from '../../context/ProductContext';
+import { ProductContext } from "../../context/ProductContext";
 
 export default function ProductList({ category, isAdmin }) {
   const { products, addProductToCart } = useContext(ProductContext);
   const navigate = useNavigate();
-  const newProducts = products?.filter(product => product.category.name == category);
+  const newProducts = products?.filter(
+    (product) => product?.category?.name == category
+  );
   const handleDelete = UseDeleteProduct();
 
   const handleOrderClick = (product) => {
@@ -35,6 +37,7 @@ export default function ProductList({ category, isAdmin }) {
       <div className="flex sm:justify-start justify-center w-[100%]">
         <table className="table-auto">
           <tbody className="flex flex-col w-[100%]">
+            {console.log(newProducts)}
             {newProducts?.map((product, index) => (
               <tr
                 key={index}
@@ -48,22 +51,20 @@ export default function ProductList({ category, isAdmin }) {
                   />
                 </td>
                 <td className="basis-1/4">
-                  <p className="mx-5 sm:text-start text-center text-xs sm:text-base sm:mx-10 my-5">
+                  <p className="mx-5 my-5 text-xs text-center sm:text-start sm:text-base sm:mx-10">
                     {product.name}
                   </p>
                 </td>
                 <td className="basis-1/4">
-                  <p className="mx-5 sm:text-start text-center text-xs sm:text-base sm:mx-10 my-5">
+                  <p className="mx-5 my-5 text-xs text-center sm:text-start sm:text-base sm:mx-10">
                     {product.price}
                   </p>
                 </td>
                 {isAdmin ? (
-                  <td className="basis-1/4 flex justify-around p-4">
+                  <td className="flex justify-around p-4 basis-1/4">
                     <div className="flex">
                       <button
-                        onClick={() =>
-                          handleDelete(product)
-                        }
+                        onClick={() => handleDelete(product)}
                         className="bg-[#F41A1A] text-black w-7 h-7 rounded mr-2"
                       >
                         <FontAwesomeIcon icon={faTrash} />
@@ -94,7 +95,7 @@ export default function ProductList({ category, isAdmin }) {
       {!isAdmin && (
         <div className="flex justify-end pe-10 w-[100%] my-5">
           <button
-            onClick={() => navigate('/checkout')}
+            onClick={() => navigate("/checkout")}
             className="text-base sm:text-2xl font-bold bg-[#F4991A] border border-[#321313] w-[120px] h-[40px] flex justify-center items-center"
           >
             Next &gt;
