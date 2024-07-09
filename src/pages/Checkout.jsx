@@ -57,6 +57,10 @@ const Checkout = () => {
         fetchOrders();
     });
 
+    useEffect(() => {
+        TableNumberSelect();
+    }, []);
+
     const handleDelete = (index) => {
         Swal.fire({
             title: 'Are you sure you want to delete this order?',
@@ -325,7 +329,7 @@ const Checkout = () => {
                                         <option value="">
                                             select a table number
                                         </option>
-
+                                        {console.log(availableNumber)}
                                         {availableNumber.map((number) => {
                                             return number.available ? (
                                                 <option
