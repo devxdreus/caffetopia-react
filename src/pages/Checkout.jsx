@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
-import COFFEE_IMAGE from '../assets/coffe.jpg';
+import COFFEE_IMAGE from '../assets/bg2.jpeg';
 import TambahButton from '../components/buttonaction/TambahButton';
 import HapusButton from '../components/buttonaction/HapusButton';
 import KurangButton from '../components/buttonaction/KurangButton';
@@ -220,7 +220,7 @@ const Checkout = () => {
                 <div className="container px-4 py-20 sm:px-0">
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                         <div className="p-4">
-                            <h3 className="text-xl text-left text-[#321313] font-bold mb-0 p-4">
+                            <h3 className="text-xl text-left text-white font-bold mb-0 p-4">
                                 Checkout your item now!
                             </h3>
                             <div className="p-4 mt-0 bg-white border border-white rounded-md">

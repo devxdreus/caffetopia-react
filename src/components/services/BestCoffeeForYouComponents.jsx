@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import coffeeLate from "../../assets/coffee-late.png";
-import americano from "../../assets/americano.png";
-import cappucino from "../../assets/cappucino.png";
+import coffeeLate from "../../assets/kopi1.png";
+import americano from "../../assets/Coffe2.png";
+import cappucino from "../../assets/kopi5.png";
 
 const BestCoffeeForYouComponents = () => {
   return (
@@ -16,7 +16,7 @@ const BestCoffeeForYouComponents = () => {
           data-aos="fade-up"
           data-aos-delay="200"
         >
-          <div className="card-coffee bg-[#844934] w-[350px] h-[210px] flex flex-col justify-center items-center group relative">
+          <div className="card-coffee bg-[#6B240C] w-[350px] h-[210px] flex flex-col justify-center items-center group relative">
             <div className="card-icon absolute bottom-32">
               <img
                 src={coffeeLate}
@@ -30,7 +30,7 @@ const BestCoffeeForYouComponents = () => {
                 Coffee Late
               </h5>
               <p className="text-base sm:text-lg my-1 font-medium">
-                IDR 20.000
+                IDR 28.000
               </p>
               <Link
                 to="/products"
@@ -47,7 +47,7 @@ const BestCoffeeForYouComponents = () => {
           data-aos="fade-up"
           data-aos-delay="350"
         >
-          <div className="card-coffee bg-[#844934] w-[350px] h-[210px] flex flex-col justify-center items-center group relative">
+          <div className="card-coffee bg-[#6B240C] w-[350px] h-[210px] flex flex-col justify-center items-center group relative">
             <div className="card-icon absolute bottom-32">
               <img
                 src={americano}
@@ -58,10 +58,10 @@ const BestCoffeeForYouComponents = () => {
             </div>
             <div className="card-content flex flex-col justify-center items-center mt-8">
               <h5 className="text-lg sm:text-2xl mt-10 font-medium">
-                Americano
+                Mochacino
               </h5>
               <p className="text-base sm:text-lg my-1 font-medium">
-                IDR 25.000
+                IDR 24.000
               </p>
               <Link
                 to="/products"
@@ -78,11 +78,11 @@ const BestCoffeeForYouComponents = () => {
           data-aos="fade-up"
           data-aos-delay="500"
         >
-          <div className="card-coffee bg-[#844934] w-[350px] h-[210px] flex flex-col justify-center items-center group relative">
-            <div className="card-icon absolute bottom-28">
+          <div className="card-coffee bg-[#6B240C] w-[350px] h-[210px] flex flex-col justify-center items-center group relative">
+            <div className="card-icon absolute bottom-32">
               <img
                 src={cappucino}
-                width={215}
+                width={170}
                 alt=""
                 className="group-hover:scale-110 group-hover:rotate-12 duration-300"
               />
@@ -92,7 +92,7 @@ const BestCoffeeForYouComponents = () => {
                 Cappuccino
               </h5>
               <p className="text-base sm:text-lg my-1 font-medium">
-                IDR 25.000
+                IDR 26.000
               </p>
               <Link
                 to="/products"

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import COFFEE_IMAGE from "../assets/coffe.jpg";
+import COFFEE_IMAGE from "../assets/sign.jpeg";
 import LOGO_IMAGE from "../assets/logo2.png";
 import InputComponents from "../components/authentication/InputComponents";
 

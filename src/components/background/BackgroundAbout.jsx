@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import COFFEE_IMAGE from "../../assets/coffe.jpg";
+import COFFEE_IMAGE from "../../assets/bg2.jpeg";
 
 const BackgroundContainer = styled.div`
   position: relative;
