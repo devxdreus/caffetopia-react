@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import BackgroundAbout from "../../components/background/BackgroundAbout";
 import { useEffect, useState } from "react";
-import axios, { axiosPrivate } from "../../api/axios";
+import axios, { axiosPrivate, BASE_URL } from "../../api/axios";
 import Swal from "sweetalert2";
 
 const UpdateProduct = () => {
@@ -100,7 +100,7 @@ const UpdateProduct = () => {
   return (
     <div className="font-poppins">
       <BackgroundAbout>
-        <div className="container py-20 px-4 sm:px-0">
+        <div className="container px-4 py-20 sm:px-0">
           <div className="p-4">
             <div className="p-4 bg-white border-1 border-[#321313] rounded-md mt-0">
               <h3 className="text-xl text-center text-[#321313] font-bold mb-0 p-4">
@@ -194,9 +194,9 @@ const UpdateProduct = () => {
                   {existingImage && !preview && (
                     <div className="mt-4">
                       <img
-                        src={existingImage}
+                        src={`${BASE_URL}/${existingImage}`}
                         alt="Existing"
-                        className="w-20 h-20 object-cover"
+                        className="object-cover w-20 h-20"
                       />
                     </div>
                   )}
@@ -205,7 +205,7 @@ const UpdateProduct = () => {
                       <img
                         src={preview}
                         alt="Preview"
-                        className="w-20 h-20 object-cover"
+                        className="object-cover w-20 h-20"
                       />
                     </div>
                   )}
